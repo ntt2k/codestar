@@ -1,25 +1,19 @@
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+*Grio Code Challenge – “Code Star”*
+ 
+ Demo: http://codestar-ntt2k.c9users.io/
+ Source: https://github.com/ntt2k/codestar
+ 
+ 
+The task is to build an app that lets you enter two people’s Github usernames. The app should use the Github API to get a list of repositories for each user and order them by number of stars.
+ 
+There should be a count of total stars for each user and a user should be declared a “winner”.
+ 
+Features/Requirements:
+Enter two Github usernames
+List each account’s repos in order of stars
+Display total stars for each user
+Display an average “stars per repo” for each user
+Declare a winner
+(optional) Toss in any other cool stats (you could even use them to help determine a winner, just make note if you modify the win condition). 
 
 
-Hi there! Welcome to Cloud9 IDE!
-
-To get you started, we included a small hello world application.
-
-1) Open the hello-world.html file
-
-2) Click on the Preview button to open a live preview pane
-
-3) Make some changes to the file, save, watch the preview, and have fun!
-
-Happy coding!
-The Cloud9 IDE team
-
-
-## Support & Documentation
-
-Visit http://docs.c9.io for documentation

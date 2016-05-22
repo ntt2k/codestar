@@ -2,13 +2,13 @@
 // Generating new widget from user input
 document.addEventListener('DOMContentLoaded', function() {
 
-	var user1 = document.getElementById('github-user-1').dataset.username;
-	console.log(user1);
-	var user2 = document.getElementById('github-user-2').dataset.username;
-	console.log(user2);
+	var parameter1 = sessionStorage.getItem('user1');
+	console.log(parameter1);
+	var parameter2 = sessionStorage.getItem('user2');
+	console.log(parameter2);
 	
-	var widget = new GitHubWidget({userName: user1},'github-user-1');
-	var widget2 = new GitHubWidget({userName: user2},'github-user-2');
+	var widget = new GitHubWidget({userName: parameter1},'github-user-1');
+	var widget2 = new GitHubWidget({userName: parameter2},'github-user-2');
 
 	// Sort repository acording to
 	// radio inputs on website

@@ -12,6 +12,14 @@
 <link rel="stylesheet" href="css/login.css"/>
 <script src="js/login.js"></script>
 
+   <script>
+        function redirectURL() {
+        sessionStorage.setItem('user1', document.getElementById('user1').value);
+        sessionStorage.setItem('user2', document.getElementById('user2').value);
+        window.location.assign("github.html");
+    }
+    </script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 </head>
@@ -48,13 +56,13 @@
                         <div class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <button type="submit" href="#" class="btn btn-primary center-block"><i class="glyphicon"></i>VS</button>                          
+                                <button id="compare" type="button" onclick="redirectURL()" class="btn btn-primary center-block"><i class="glyphicon" ></i>VS</button>                          
                             </div>
                         </div>
     
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="use2" type="password" class="form-control" name="user2" placeholder="Second User">
+                            <input id="user2" type="text" class="form-control" name="user2" value="" placeholder="Second User">
                         </div>                                                                  
     
                     </form>     
@@ -313,6 +321,7 @@
       </g>
     </svg>
     
+ 
 </body>
 </html>
 
