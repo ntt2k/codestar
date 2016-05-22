@@ -44,7 +44,7 @@ var GitHubWidget;
 (function() {
 
 GitHubWidget = function (options) {
-	var template = 'github-user-2';
+	var template = 'github-user-1';
 
 	this.defaultConfig = {
 		sortBy: 'stars', // possible: 'stars', 'updateTime'
@@ -58,7 +58,7 @@ GitHubWidget = function (options) {
 	this.user = options.userName || this.$template.dataset.username;
 
 	this.url = {
-		api: 'https://api.github.com/users/' + this.user,
+		api: 'https://api.github.com/users/' + this.user + '?client_id=076892d9e113c4c38732&client_secret=88d8349a34a90692b9bd24829e7ce67c623e5ab5',
 		langs: []
 	};
 	
@@ -148,7 +148,8 @@ GitHubWidget.prototype.getTopLanguages = function (callback) {
 			}
 
 		}, false);
-
+		
+		apiURL = apiURL + + '?client_id=076892d9e113c4c38732&client_secret=88d8349a34a90692b9bd24829e7ce67c623e5ab5';
 		request.open('GET', apiURL, true);
 		request.send(null);
 	}, this);
@@ -324,7 +325,8 @@ GitHubWidget.prototype.render.langs = function () {
 // handle AJAX requests to GitHub's API
 GitHubWidget.prototype.getURL = function (url, async) {
 	async = async || false;
-
+	
+	url = url + '?client_id=076892d9e113c4c38732&client_secret=88d8349a34a90692b9bd24829e7ce67c623e5ab5';
 	var request = new XMLHttpRequest();
 		request.open('GET', url, async);
 		request.send();
