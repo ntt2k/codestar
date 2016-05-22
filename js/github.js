@@ -149,7 +149,7 @@ GitHubWidget.prototype.getTopLanguages = function (callback) {
 
 		}, false);
 		
-		apiURL = apiURL + + '?client_id=076892d9e113c4c38732&client_secret=88d8349a34a90692b9bd24829e7ce67c623e5ab5';
+		apiURL = apiURL + '?client_id=076892d9e113c4c38732&client_secret=88d8349a34a90692b9bd24829e7ce67c623e5ab5';
 		request.open('GET', apiURL, true);
 		request.send(null);
 	}, this);
