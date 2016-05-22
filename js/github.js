@@ -1,41 +1,43 @@
 
 // Generating new widget from user input
 document.addEventListener('DOMContentLoaded', function() {
-	var options = {
-		sortBy: 'stars', // possible: 'stars', 'updateTime'
-		reposHeaderText: 'Most starred',
-		maxRepos: 5
-	};
-	var widget = new GitHubWidget(options);
+	// var options = {
+	// 	sortBy: 'stars', // possible: 'stars', 'updateTime'
+	// 	reposHeaderText: 'Most starred',
+	// 	maxRepos: 5,
+	// 	userName: 'simonsmith',
+	// };
+	var widget = new GitHubWidget({userName: 'ntt2k'},'github-user-1');
+	var widget2 = new GitHubWidget({userName: 'simonsmith'},'github-user-2');
 
 	// Sort repository acording to
 	// radio inputs on website
 
-	var $sortingRadios = document.querySelectorAll('.choose-repo-sorting label');
+	// var $sortingRadios = document.querySelectorAll('.choose-repo-sorting label');
 
 	// sort by starrgazers
-	$sortingRadios[1].addEventListener('click', function (element) {
-		element.target.classList.add('active');
-		$sortingRadios[0].classList.remove('active');
+	// $sortingRadios[1].addEventListener('click', function (element) {
+	// 	element.target.classList.add('active');
+	// 	$sortingRadios[0].classList.remove('active');
 
-		options.sortBy = 'stars';
-		options.reposHeaderText = element.target.textContent;
+	// 	options.sortBy = 'stars';
+	// 	options.reposHeaderText = element.target.textContent;
 
-		widget.refresh(options);
-	});
+	// 	widget.refresh(options);
+	// });
 
 
 	// Creating brand new widget instance
 	// for user that we type in input
 
-	var	$input = document.getElementById('gh-uname'),
-		$submit = document.getElementById('gh-uname-submit');
+	// var	$input = document.getElementById('gh-uname'),
+	// 	$submit = document.getElementById('gh-uname-submit');
 
-	$submit.addEventListener('click', function (element) {
-		widget = new GitHubWidget({ userName: $input.value });
+	// $submit.addEventListener('click', function (element) {
+	// 	widget = new GitHubWidget({ userName: $input.value });
 
-		element.preventDefault();
-	});
+	// 	element.preventDefault();
+	// });
  });
  
  
@@ -43,8 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
 var GitHubWidget;
 (function() {
 
-GitHubWidget = function (options) {
-	var template = 'github-user-1';
+GitHubWidget = function (options, template) {
 
 	this.defaultConfig = {
 		sortBy: 'stars', // possible: 'stars', 'updateTime'
@@ -52,10 +53,9 @@ GitHubWidget = function (options) {
 		maxRepos: 5
 	};
 
-	options = this.defaultConfig;
-
 	this.$template = document.getElementById(template);
-	this.user = options.userName || this.$template.dataset.username;
+	
+	this.user = options.userName;
 
 	this.url = {
 		api: 'https://api.github.com/users/' + this.user + '?client_id=076892d9e113c4c38732&client_secret=88d8349a34a90692b9bd24829e7ce67c623e5ab5',
@@ -275,25 +275,11 @@ GitHubWidget.prototype.render.profile = function () {
 	$name.href = this.data.html_url;
 	$name.className = 'name';
 	$name.appendChild(document.createTextNode(this.data.name));
-	
 	$avatar.src = this.data.avatar_url;
 	$avatar.className = 'avatar';
-
 	$followButton.href = $name.href;
-// 	$followButton.className = 'follow-button';
-// 	$followButton.innerHTML = 'Follow @' + this.user;
-
-// 	$followers.href = this.data.followers_url;
-// 	$followers.className = 'followers';
-// 	$followers.innerHTML = this.data.followers;
-
-// 	$followContainer.className = 'followMe';
-// 	$followContainer.appendChild($followButton);
-// 	$followContainer.appendChild($followers);
-
 	$profile.appendChild($avatar);
 	$profile.appendChild($name);
-// 	$profile.appendChild($followContainer);
 	$profile.appendChild($stats);
 	$profile.classList.add('profile');
 
@@ -323,12 +309,12 @@ GitHubWidget.prototype.render.langs = function () {
 };
 
 // handle AJAX requests to GitHub's API
-GitHubWidget.prototype.getURL = function (url, async) {
-	async = async || false;
+GitHubWidget.prototype.getURL = function (url) {
+	// async = async || false;
 	
 	url = url + '?client_id=076892d9e113c4c38732&client_secret=88d8349a34a90692b9bd24829e7ce67c623e5ab5';
 	var request = new XMLHttpRequest();
-		request.open('GET', url, async);
+		request.open('GET', url, false);
 		request.send();
 	
 	return request;
@@ -343,8 +329,8 @@ GitHubWidget.prototype.loadCSS = function() {
 													// so while your script is executing, 
 													// the document it was included in 
 													// is sure to have your script element as the last one on the page
-	$style.rel = 'stylesheet';
-	$style.href = scriptPath + '/../gh-profile-widget.css';
+	// $style.rel = 'stylesheet';
+	// $style.href = scriptPath + '/../gh-profile-widget.css';
 
 	document.head.appendChild($style);
 	this.$template.className = 'gh-profile-widget';
@@ -354,4 +340,4 @@ GitHubWidget.prototype.loadCSS = function() {
 
 })();
 
-var widget = new GitHubWidget();
+// var widget = new GitHubWidget();
