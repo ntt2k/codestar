@@ -1,14 +1,14 @@
 
 // Generating new widget from user input
 document.addEventListener('DOMContentLoaded', function() {
-	// var options = {
-	// 	sortBy: 'stars', // possible: 'stars', 'updateTime'
-	// 	reposHeaderText: 'Most starred',
-	// 	maxRepos: 5,
-	// 	userName: 'simonsmith',
-	// };
-	var widget = new GitHubWidget({userName: 'ntt2k'},'github-user-1');
-	var widget2 = new GitHubWidget({userName: 'simonsmith'},'github-user-2');
+
+	var user1 = document.getElementById('github-user-1').dataset.username;
+	console.log(user1);
+	var user2 = document.getElementById('github-user-2').dataset.username;
+	console.log(user2);
+	
+	var widget = new GitHubWidget({userName: user1},'github-user-1');
+	var widget2 = new GitHubWidget({userName: user2},'github-user-2');
 
 	// Sort repository acording to
 	// radio inputs on website
@@ -45,17 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
 var GitHubWidget;
 (function() {
 
-GitHubWidget = function (options, template) {
+GitHubWidget = function (parameter, template) {
 
 	this.defaultConfig = {
-		sortBy: 'stars', // possible: 'stars', 'updateTime'
+		sortBy: 'stars', 
 		reposHeaderText: 'Most starred',
 		maxRepos: 5
 	};
 
 	this.$template = document.getElementById(template);
-	
-	this.user = options.userName;
+	this.user = parameter.userName;
 
 	this.url = {
 		api: 'https://api.github.com/users/' + this.user + '?client_id=076892d9e113c4c38732&client_secret=88d8349a34a90692b9bd24829e7ce67c623e5ab5',
@@ -325,12 +324,7 @@ GitHubWidget.prototype.loadCSS = function() {
 		$scripts = document.getElementsByTagName('script'),
 		scriptPath;
 	
-	scriptPath = $scripts[$scripts.length-1].src;	// This works because the browser loads and executes scripts in order, 
-													// so while your script is executing, 
-													// the document it was included in 
-													// is sure to have your script element as the last one on the page
-	// $style.rel = 'stylesheet';
-	// $style.href = scriptPath + '/../gh-profile-widget.css';
+	scriptPath = $scripts[$scripts.length-1].src;	 
 
 	document.head.appendChild($style);
 	this.$template.className = 'gh-profile-widget';
@@ -340,4 +334,3 @@ GitHubWidget.prototype.loadCSS = function() {
 
 })();
 
-// var widget = new GitHubWidget();
